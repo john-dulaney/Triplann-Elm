@@ -4,7 +4,6 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
 
-
 main =
     Html.beginnerProgram
         { model = model
@@ -23,11 +22,7 @@ model : Model
 model =
     Model "" "" ""
 
-
-
 -- UPDATE
-
-
 type Msg
     = Name String
     | Password String
