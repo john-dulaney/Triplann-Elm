@@ -4,5 +4,11 @@ $roboto-font-path: "~materialize-css/dist/fonts/roboto/";
 @import "../node_modules/materialize-css/sass/materialize";
 
 
-
+#form {
+    width: 40%;
+    background-color: burlywood;
+    margin-left: 30%;
+    margin-top: 10%;
+    border: solid 2px black;
+}
 

@@ -12,17 +12,12 @@ main =
         , update = update
         }
 
-
-
 -- MODEL
-
-
 type alias Model =
     { name : String
     , password : String
     , passwordAgain : String
     }
-
 
 model : Model
 model =
@@ -51,14 +46,10 @@ update msg model =
         PasswordAgain password ->
             { model | passwordAgain = password }
 
-
-
 -- VIEW
-
-
 view : Model -> Html Msg
 view model =
-    div []
+    div [id "form"]
         [ input [ type_ "text", placeholder "Name", onInput Name ] []
         , input [ type_ "password", placeholder "Password", onInput Password ] []
         , input [ type_ "password", placeholder "Re-enter Password", onInput PasswordAgain ] []
