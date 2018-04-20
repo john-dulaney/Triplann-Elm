@@ -11,7 +11,6 @@ main =
         , view = view
         , update = update
         }
-
 -- MODEL - types each piece to the proper type. Strings galore
 type alias Model =
     { name : String
