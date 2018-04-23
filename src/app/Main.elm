@@ -2,8 +2,8 @@ module Main exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
--- import Html.Events exposing (onInput, onSubmit)
--- import Json.Decode exposing (..)
+import Html.Events exposing (onInput, onSubmit)
+import Json.Decode exposing (..)
 
 -- Once you have given yourself a large stash of coins in your piggybank, look at each key and perform the appropriate math on the integer value to determine how much money you have in dollars. Store that value in a variable named dollarAmount.
 
