@@ -3,7 +3,9 @@ module CoinsToCash exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onInput)
-import Json.Decode exposing (map, at, int)
+import Json.Decode exposing (..)
+import Json.Map exposing (..)
+
 -- Once you have given yourself a large stash of coins in your piggybank, look at each key and perform the appropriate math on the integer value to determine how much money you have in dollars. Store that value in a variable named dollarAmount.
 
 
@@ -64,3 +66,9 @@ view model =
 onIntInput : (Int -> msg) -> Attribute msg
 onIntInput tagger =
   Html.Events.on "input" (Json.map tagger (Json.at ["target", "value"] Json.int))
+
+notFoundView : Html msg
+notFoundView =
+    div []
+        [ text "Not found"
+        ]
