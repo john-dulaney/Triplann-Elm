@@ -1,13 +1,13 @@
 module Msgs exposing (..)
 
 import Http
-import Models exposing (Player, PlayerId)
+import Models exposing (Triplann, TriplannId)
 import Navigation exposing (Location)
 import RemoteData exposing (WebData)
 
 
 type Msg
-    = OnFetchPlayers (WebData (List Player))
+    = OnFetchTriplanns (WebData (List Triplann))
     | OnLocationChange Location
-    | ChangeLevel Player Int
-    | OnPlayerSave (Result Http.Error Player)
+    | ChangeLevel Triplann Int
+    | OnTriplannSave (Result Http.Error Triplann)

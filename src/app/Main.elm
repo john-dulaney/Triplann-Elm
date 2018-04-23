@@ -1,36 +1,78 @@
 module Main exposing (..)
 
-import Models exposing (Model, initialModel)
-import Msgs exposing (Msg)
-import Navigation exposing (Location)
-import Routing
-import Update exposing (update)
-import View exposing (view)
+import Html exposing (..)
+import Html.Attributes exposing (..)
+import Html.Events exposing (onInput, onSubmit)
+import Json.Decode exposing (..)
+
+-- Once you have given yourself a large stash of coins in your piggybank, look at each key and perform the appropriate math on the integer value to determine how much money you have in dollars. Store that value in a variable named dollarAmount.
 
 
-init : Location -> ( Model, Cmd Msg )
-init location =
+main = 
+    Html.beginnerProgram
+    { model = model
+    , view = view
+    , update = update
+    }
+
+type alias Model =
+    { pennies : Int
+    , nickels : Int
+    , dimes : Int
+    , quarters : Int
+    , dollars : Int
+    }
+
+model : Model
+model = 
+    Model 0 0 0 0 0
+
+type Msg
+    = Pennies Int
+    | Nickels Int
+    | Dimes Int
+    | Quarters Int
+    | Dollars Int
+
+update : Msg -> Model -> Model
+update msg model =
+    case msg of
+        Pennies pennies ->
+            { model | pennies = toFloat pennies * 0.01 }
+
+        Nickels nickels ->
+            { model | nickels = toFloat nickels * 0.05 }
+
+        Dimes dimes ->
+            { model | dimes = toFloat dimes * 0.10 }
+
+        Quarters quarters ->
+            { model | quarters = toFloat quarters * 0.25 }
+
+        Dollars dollars ->
+            { model | dollars = dollars }
+
+view : Model -> Html Msg
+view model =
+    div [id "Coin_Form"] 
+        [ input [ type_ "Number", placeholder "Pennies", onInput Pennies ] []
+        , input [ type_ "Number", placeholder "Nickels", onInput Nickels ] []
+        , input [ type_ "Number", placeholder "Dimes", onInput Dimes ] []
+        , input [ type_ "Number", placeholder "Quarters", onInput Quarters ] []
+        , button [ type_ "Submit", placeholder "Do it" ] []
+        ]
+
+-- onIntInput : (Int -> msg) -> Attribute msg
+-- onIntInput tagger =
+--   Html.Events.on "input" (Json.map tagger (Json.at ["target", "value"] Json.int))
+
+cashUpdate : Model -> Html msg
+cashUpdate model =
     let
-        currentRoute =
-            Routing.parseLocation location
+        ( color, message ) =
+            if toFloat model.pennies == 0.01 then
+                ( "green", "OK" )
+            else
+                ( "red", "Something Aint Right" )
     in
-        ( initialModel currentRoute, fetchPlayers )
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
-
-
-
--- MAIN
-
-
-main : Program Never Model Msg
-main =
-    Navigation.program Msgs.OnLocationChange
-        { init = init
-        , view = view
-        , update = update
-        , subscriptions = subscriptions
-        }
+        div [ style [ ( "color", color ) ] ] [ text message ]
