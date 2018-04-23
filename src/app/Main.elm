@@ -8,3 +8,4 @@ main =   text  ( "Welcome to " ++ name )
 
 name : String
 name = "Triplann"
+
