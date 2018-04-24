@@ -77,9 +77,9 @@ view model =
         , cashUpdate model
         ]
 
--- onIntInput : (Int -> msg) -> Attribute msg
--- onIntInput tagger =
---   Html.Events.on "input" (Json.map tagger (Json.at ["target", "value"] Json.int))
+onIntInput : (Int -> msg) -> Attribute msg
+onIntInput tagger =
+  Html.Events.on "input" (Json.map tagger (Json.at ["target", "value"] Json.int))
 
 cashUpdate : Model -> Html msg
 cashUpdate model =
