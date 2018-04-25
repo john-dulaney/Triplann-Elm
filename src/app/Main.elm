@@ -25,12 +25,7 @@ type alias Model =
 
 model : Model
 model = 
-    Model 
-        0.0 
-        0.0 
-        0.0 
-        0.0 
-        0.0
+    Model 0.0 0.0 0.0 0.0 0.0
 
 type Msg
     = Pennies Float
