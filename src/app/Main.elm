@@ -59,26 +59,29 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [id "form"] 
-        [ h4 [] [ text "Coins to cash" ]
-        , input [ type_ "Number", placeholder "Pennies" ] []
-        , input [ type_ "Number", placeholder "Nickels" ] []
-        , input [ type_ "Number", placeholder "Dimes" ] []
-        , input [ type_ "Number", placeholder "Quarters" ] []
-        , button [ type_ "Submit", placeholder "Do it" ] [text "Click it fam"]
-        , cashUpdate model
-        ]
-    -- div [id "Coin_Form"] 
-    --     [ input [ type_ "Number", placeholder "Pennies", onInput Pennies ] []
-    --     , input [ type_ "Number", placeholder "Nickels", onInput Nickels ] []
-    --     , input [ type_ "Number", placeholder "Dimes", onInput Dimes ] []
-    --     , input [ type_ "Number", placeholder "Quarters", onInput Quarters ] []
-    --     , button [ type_ "Submit", placeholder "Do it" ] []
+    -- div [id "form"] 
+    --     [ h4 [] [ text "Coins to cash" ]
+    --     , input [ type_ "Number", placeholder "Pennies" ] []
+    --     , input [ type_ "Number", placeholder "Nickels" ] []
+    --     , input [ type_ "Number", placeholder "Dimes" ] []
+    --     , input [ type_ "Number", placeholder "Quarters" ] []
+    --     , button [ type_ "Submit", placeholder "Do it" ] [text "Click it fam"]
+    --     , cashUpdate model
     --     ]
+    div [id "Coin_Form"] 
+        [ input [ type_ "Number", placeholder "Pennies", onInput Pennies ] []
+        , input [ type_ "Number", placeholder "Nickels", onInput Nickels ] []
+        , input [ type_ "Number", placeholder "Dimes", onInput Dimes ] []
+        , input [ type_ "Number", placeholder "Quarters", onInput Quarters ] []
+        , button [ type_ "Submit", placeholder "Do it" ] []
+        ]
 
--- onIntInput : (Int -> msg) -> Attribute msg
--- onIntInput tagger =
---   Html.Events.on "input" (Json.map tagger (Json.at ["target", "value"] Json.int))
+onIntInput : (Int -> msg) -> Attribute msg
+onIntInput tagger =
+  Html.Events.on "input" (Json.Decode.map tagger (at ["target", "value"] int))
+
+
+
 
 cashUpdate : Model -> Html msg
 cashUpdate model =
